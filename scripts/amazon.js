@@ -1,3 +1,4 @@
+import {cart} from '../data/cart.js';
 
 // Auto generating HTML code according to no of data, so we don't have to copy paste HTML code manually. if there's a new data then JS will auto generate the HTML code by iterating.
 let productHTML = '';
@@ -76,18 +77,24 @@ document.querySelectorAll('.js-add-to-cart')
       });
 
       if(matchingItem) {
-        matchingItem.quantity += 1;
+        matchingItem.quantity++;
       }
       else{
         cart.push(
           {
-            productId: productId,
+            productId,
             quantity: 1
           }
         );
       }
 
+      let cartQuantity = 0;
 
-      console.log(cart);
+      cart.forEach((item) => {
+        cartQuantity += item.quantity;
+      });
+
+      document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
     });
   });

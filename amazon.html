@@ -45,7 +45,7 @@
 
         <a class="cart-link header-link" href="checkout.html">
           <img class="cart-icon" src="images/icons/cart-icon.png">
-          <div class="cart-quantity">3</div>
+          <div class="cart-quantity js-cart-quantity">0</div>
           <div class="cart-text">Cart</div>
         </a>
       </div>
@@ -58,8 +58,30 @@
     </div>
 
 
-    <script src="/data/cart.js"> </script>
+    
     <script src="/data/products.js"> </script>
-    <script src="/scripts/amazon.js"> </script>
+    <script type = "module" src="/scripts/amazon.js"> </script>
+    <!-- type = "module" let the "amazon.js" file to get variables out of other files (which doesn't loaded with <script> tag). 
+      
+      how to create a module:
+      1)create a file
+      2)don't load the file with <script> tag.
+
+      how to get variable out of a file/module:
+      1)add type = "module" attribute
+      2)export
+      3)import
+
+      in here we assign the attribute type = "module" to "amazon.js" <script> tag so we can access variables from other files,
+      and we export the variables from the file we want which here is "cart.js",
+      then we import the variable "cart" from the file "cart.js" in the "amazon.js".
+
+
+      pros:
+      * it avoids naming conflicts.
+      * don't have to worry about order of files, in script tag we should arrange the files in a order, but in modules you don't need an order.
+      -->
+
+
   </body>
 </html>

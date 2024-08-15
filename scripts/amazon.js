@@ -1,4 +1,5 @@
 import {cart} from '../data/cart.js';
+import {products} from '../data/products.js';
 
 // Auto generating HTML code according to no of data, so we don't have to copy paste HTML code manually. if there's a new data then JS will auto generate the HTML code by iterating.
 let productHTML = '';

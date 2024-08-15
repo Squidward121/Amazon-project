@@ -1,5 +1,11 @@
-import {cart} from '../data/cart.js';
+import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
+
+// to import everything on a file, the syntax is :
+//  import * as cartModule from '../data/cart.js';
+//  cartModule.cart
+//  cartModule.addToCart('id');
+// this saves everything in the file to a object named cartModule, and to access just do it like how we access in a object.
 
 // Auto generating HTML code according to no of data, so we don't have to copy paste HTML code manually. if there's a new data then JS will auto generate the HTML code by iterating.
 let productHTML = '';
@@ -61,41 +67,33 @@ products.forEach( (products) => {
 
 document.querySelector('.products-grid-js').innerHTML = productHTML;
 
+
+
+
+
+
+
+
+function updateCartQuantity() {
+  let cartQuantity = 0;
+
+      cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
+      });
+
+      document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
+
+
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
      const productId = button.dataset.productId;
       // "dataset" is used to get all the info given to the data attribute in HTML. "dataset" act like a object, so to access the info we assigned, use the name we gave it in camelcase(.productId).
 
-      let matchingItem;
+      addToCart(productId);
 
-      cart.forEach((item) => {
-        if(productId === item.productId)
-        {
-          matchingItem = item;
-          
-        }
-      });
-
-      if(matchingItem) {
-        matchingItem.quantity++;
-      }
-      else{
-        cart.push(
-          {
-            productId,
-            quantity: 1
-          }
-        );
-      }
-
-      let cartQuantity = 0;
-
-      cart.forEach((item) => {
-        cartQuantity += item.quantity;
-      });
-
-      document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+      updateCartQuantity();
 
     });
   });

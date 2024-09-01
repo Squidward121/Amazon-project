@@ -1,4 +1,4 @@
-import formatCurrency from "../scripts/utils/money.js";
+import formatCurrency from "../../scripts/utils/money.js";
 
 // this is automated testing, means we test our real code with a local code, so it doesn't take any effort and time as it takes in manual test.
 // In manual test it's Hard to test every situation and it's Hard to re-test. Automated code solves these problems.

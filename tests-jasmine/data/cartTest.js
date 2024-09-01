@@ -35,3 +35,9 @@ describe('test suite: addToCart', () => {
     expect(cart[0].quantity).toEqual(1);
   });
 });
+
+/* 
+  testing one piece or single functions is called Unit testing.
+  But testing more complicated codes which operates the whole page or part of the page is called Integration test. it test many units or pieces of code working together.
+  for eg: testing the 'renderOrderSummary()' in orderSummary.js is an Integration test, it uses many different functions and many libraries to create the page.
+*/

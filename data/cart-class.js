@@ -4,16 +4,16 @@
 */
 // class is a better way to generate objects in object-oriented programming.
 class Cart {
-  cartItems;
-  localStorageKey;
+  cartItems;      // and this is a public property, this accessible across this class.
+  #localStorageKey;   // this make it private which make it's accessing possible only inside the class. Whenever you access it inside the class you have to use "#" in front.
 
   constructor(localStorageKey) {             // it works as normal method except it runs automatically after creating the object. use "constructor" keyword.
-    this.localStorageKey = localStorageKey;
-    this.loadFromStorage();
+    this.#localStorageKey = localStorageKey;
+    this.#loadFromStorage();
   }
 
-  loadFromStorage() {
-    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+  #loadFromStorage() {    // we can also make a method private by same syntax.
+    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
     
     if(!this.cartItems){
       this.cartItems = [{
@@ -30,7 +30,7 @@ class Cart {
   }
 
   saveToStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
   addToCart(productId) {
@@ -120,4 +120,9 @@ console.log(businessCart instanceof Cart);  // so this will check if the "busine
     its useful when we have some setup code after creating the object, we can move the setup code into the constructor method and it'll automatically runs the method.
     so it's cleaner, we moved the code inside the class. And it can have parameters, arguments goes on object creating section and we give it inside the class calling.
     it has to be named "constructor", and should not return anything from the constructor.
+
+    *Private properties and methods
+    it makes a property or a method only accessible in the class, so its secures from anyone trying to access it outside the class. so private gives us security.
+    The syntax is "#", you've to use when you declare it and also when you access it inside the class.
+    Any property and method that's not private is called public, anyone can access it from outside and inside the class.
 */

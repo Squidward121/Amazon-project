@@ -1,9 +1,9 @@
-import { cart } from "../../data/cart.js";
+import '../../data/cart-class.js';
 
 export function headerCartQuantity() {
   let cartQuantity = 0;
 
-  cart.forEach((cartItem) => {
+  cart.cartItems.forEach((cartItem) => {
     cartQuantity += cartItem.quantity;
   });
 

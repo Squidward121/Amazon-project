@@ -3,7 +3,7 @@
     1) How the page looks.
     2) How the page behaves when something changes. */
 import { renderOrderSummary } from "../../scripts/checkout/orderSummary.js";
-import { loadFromStorage, cart } from "../../data/cart.js";
+import '../../data/cart-class.js';
 
 describe('test suite: renderOrderSummary', () => {
 
@@ -35,7 +35,7 @@ describe('test suite: renderOrderSummary', () => {
       }]);
     });
 
-    loadFromStorage();
+    cart.loadFromStorage();
 
     renderOrderSummary();
   });
@@ -75,8 +75,8 @@ describe('test suite: renderOrderSummary', () => {
       document.querySelector(`.js-cart-item-container-${productId2}`)
     ).not.toEqual(null);
 
-    expect(cart.length).toEqual(1);
-    expect(cart[0].productId).toEqual(productId2);
+    expect(cart.cartItems.length).toEqual(1);
+    expect(cart.cartItems[0].productId).toEqual(productId2);
 
 
     document.querySelector('.js-test-container').innerHTML = '';

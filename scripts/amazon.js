@@ -1,6 +1,6 @@
-import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
+import '../data/cart-class.js';
 
 // to import everything on a file, the syntax is :
 //  import * as cartModule from '../data/cart.js';
@@ -78,7 +78,7 @@ document.querySelector('.products-grid-js').innerHTML = productHTML;
 function updateCartQuantity() {
   let cartQuantity = 0;
 
-      cart.forEach((cartItem) => {
+      cart.cartItems.forEach((cartItem) => {
         cartQuantity += cartItem.quantity;
       });
 
@@ -92,8 +92,7 @@ document.querySelectorAll('.js-add-to-cart')
      const productId = button.dataset.productId;
       // "dataset" is used to get all the info given to the data attribute in HTML. "dataset" act like a object, so to access the info we assigned, use the name we gave it in camelcase(.productId).
 
-      addToCart(productId);
-
+      cart.addToCart(productId);
       updateCartQuantity();
 
     });

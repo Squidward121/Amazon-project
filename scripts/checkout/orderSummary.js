@@ -1,5 +1,5 @@
 // auto generating HTML code according to datas in cart.js
-import '../../data/cart-class.js';
+import {cart} from '../../data/cart-class.js';
 import { getProduct } from "../../data/products.js";
 import  formatCurrency from "../utils/money.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
@@ -45,7 +45,7 @@ export function renderOrderSummary() {
             ${matchingProduct.name}
           </div>
           <div class="product-price">
-            $${formatCurrency(matchingProduct.priceCents)}
+            ${matchingProduct.getPrice()}
           </div>
           <div class="product-quantity
           js-product-quantity${matchingProduct.id}">

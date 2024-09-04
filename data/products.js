@@ -1,4 +1,5 @@
 // this is where we save the data.
+import formatCurrency from '../scripts/utils/money.js';
 
 export function getProduct(productId) {
   let matchingProduct;
@@ -11,6 +12,33 @@ export function getProduct(productId) {
   });
   return matchingProduct;
 }
+
+class Product {
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(productDetails) {
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+  }
+
+  getStarsUrl() {
+    return `images/ratings/rating-${this.rating.stars *10}.png`;
+  }
+
+  getPrice() {
+    return `$${formatCurrency(this.priceCents)}`;
+  }
+}
+
+
+
 
 export const products = [
   {
@@ -671,4 +699,6 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((productDetails) => {
+  return new Product(productDetails);
+});

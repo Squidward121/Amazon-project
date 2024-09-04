@@ -93,7 +93,7 @@ class Cart {
 }
 
 
-const cart = new Cart('cart-oop');    // this is how we generate a new object. the "new" keyword is used to let the compiler know that it's a new object.
+export const cart = new Cart('cart-oop');    // this is how we generate a new object. the "new" keyword is used to let the compiler know that it's a new object.
 const businessCart = new Cart('cart-business');    // the parameter we gives will go to constructor inside the class.
 // by the way each object that we generate from a class is called the instance of the class.
 

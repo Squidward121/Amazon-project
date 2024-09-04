@@ -1,4 +1,4 @@
-import '../../data/cart-class.js';
+import {cart} from '../../data/cart-class.js';
 
 export function headerCartQuantity() {
   let cartQuantity = 0;

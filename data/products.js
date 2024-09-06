@@ -12,7 +12,7 @@ export function getProduct(productId) {
   });
   return matchingProduct;
 }
-
+  // Product class
 class Product {
   id;
   image;
@@ -35,8 +35,32 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML() {
+    return ``;
+  }
 }
 
+
+
+class Clothing extends Product{   // "extends" inherits all the properties and methods of "Product" class.
+  sizeChartLink;
+
+  constructor(productDetails) {
+    super(productDetails);    // this calls/inherits the constructor of parent class, so all the properties will get inherited.
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML() {
+    // by the way this "extraInfoHTML()" will automatically override the "Product" class's "extraInfoHTML()" , this is called Method overriding.
+    // super.extraInfoHTML();   this will inherit the "extraInfoHTML()" in the above "Product" class.
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">
+        Size chart
+      </a>
+    `;
+  }
+}
 
 
 
@@ -700,5 +724,8 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if(productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 });

@@ -121,4 +121,11 @@ console.log(businessCart instanceof Cart);  // so this will check if the "busine
     it makes a property or a method only accessible in the class, so its secures from anyone trying to access it outside the class. so private gives us security.
     The syntax is "#", you've to use when you declare it and also when you access it inside the class.
     Any property and method that's not private is called public, anyone can access it from outside and inside the class.
+
+    *Inheritance
+
+    *polymorphism:
+    we can use a method without knowing exactly what class it is. Polymorphism is sort of like an alternative of doing an if-else statement.
+    eg: The method "extraInfoHTML()" of "Product" and "Clothing" classes in "cart-class.js", the method is used in "amazon.js" line no: 53.
+    
 */

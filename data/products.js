@@ -62,7 +62,24 @@ class Clothing extends Product{   // "extends" inherits all the properties and m
   }
 }
 
+/*
+"Date()" is a built-in class which is used to get the local current time and local current date etc....
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+*/
 
+/*
+function logThis() {
+  // by default, in a regular function "this" points to undefined,
+   only in methods it points to the outer objects,
+   and in arrow functions it don't change the value of "this", it keeps the value of outside's "this".
+  // but Inside a regular function, we can change "this" to whatever we want by using ".call" when calling the function.
+  console.log(this);
+}
+logThis();
+logThis.call('hello'); // .call is a method we can use for any regular function which assigns the value on parameter to "this" inside the function.
+*/
 
 export const products = [
   {

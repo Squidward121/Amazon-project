@@ -4,11 +4,18 @@
     2) How the page behaves when something changes. */
 import { renderOrderSummary } from "../../scripts/checkout/orderSummary.js";
 import {cart} from '../../data/cart-class.js';
+import { loadProducts } from "../../data/products.js";
 
 describe('test suite: renderOrderSummary', () => {
 
   const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
   const productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d';
+
+  beforeAll( (done) => {
+    loadProducts( () => {
+      done();    // lets us control when to go to the next step.
+    });
+  });
 
   beforeEach(() => {
     /* This is beforeEach() hook, and it'll run the code we write before each of our test down below. there are several hooks in jasmine:

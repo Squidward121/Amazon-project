@@ -81,6 +81,37 @@ logThis();
 logThis.call('hello'); // .call is a method we can use for any regular function which assigns the value on parameter to "this" inside the function.
 */
 
+
+export let products = [];
+
+
+
+/*
+by the way, the function we recieve as a argument is called an Callback function. coz we're using it to run it in the future or to call in the future.
+so the function "fun" will called back in the future, hence the name Callback. 
+*/
+export function loadProducts(fun) {
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    products = JSON.parse(xhr.response).map((productDetails) => {
+      if(productDetails.type === 'clothing') {
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+
+    console.log('load products');
+    fun();
+  });
+  
+  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.send();
+}
+
+
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -746,3 +777,4 @@ export const products = [
   }
   return new Product(productDetails);
 });
+*/

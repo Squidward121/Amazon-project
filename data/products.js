@@ -84,6 +84,74 @@ logThis.call('hello'); // .call is a method we can use for any regular function 
 
 export let products = [];
 
+/*
+fetch():
+  its a better way to make HTTP requests.
+  currently we are using XMLHttpRequest() to make request to the backend and this uses a callback,
+  fetch() also make requests to the backend, but fetch() uses a promise.
+  
+  function loadProductsFetch() {
+  fetch('https://supersimplebackend.dev/products'); 
+  }
+
+  by default fetch() will make a GET request for us, so we just've to give the URL that we want, it'll send the request to it.
+  as you can see its a lot more cleaner than the code below, we don't have to setup any code like creating a new object in the name of XMLHttpRequest() or xhr.open() or xhr.send(). we just've to call fetch() and tell it where we want the request to go.
+
+  so the eg code above will send the request to the backend, and now how do we get the response ?
+  so instead of using a callback in an eventlistener fetch() uses a promise. when we call fetch() its gonna create a promise, so we can simply add a next step using 
+  ".then()" to it, coz fetch creates a promise when we call it, so it acts like promise on outside so we can simply add ".then()".
+  and when the response comes back it'll be saved on the parameter of .then(), we can simply access it on below.
+  Here we are requesting products which are JSON object, so to access the JSON object which are attached on the response we've to access it like: "response.json".
+  
+  function loadProductsFetch() {
+    fetch('https://supersimplebackend.dev/products').then((response) => {
+      response.json();
+      });
+    }
+    
+    
+    
+    
+  "response.json" is actually asynchronous, it returns a promise, so we need to wait for this promise to finish.
+  to do that inside .then() we can return this promise, like we do two step in callback method.
+  and then we can add a next step .then().
+  when the "response.json" finishes its gonna give us the data that attached to the response and its gonna save it inside next .then() parameter
+  and we can simply use it on the arrow funtion inside.
+
+function loadProductsFetch() {
+  fetch('https://supersimplebackend.dev/products').then((response) => {
+    return response.json();
+  }).then((productsData) => {
+    console.log(productsData);
+  });
+}
+
+  this is gonna gave us an array of the products. and it'll convert it to an JS object from JSON object for us. so this saves us a little bit 
+  of code.
+
+  fetch is the better way to make a request coz it uses promise directly.
+*/
+
+export function loadProductsFetch() {
+  // we are saved this entire fetch promise so we can return it and then we can add a next step wherever this function is called. 
+  const promise = fetch(
+    'https://supersimplebackend.dev/products'
+  ).then((response) => {
+    return response.json();
+  }).then((productsData) => {
+    products = productsData.map((productDetails) => {
+      if(productDetails.type === 'clothing') {
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+
+    console.log('load products');
+  });
+
+  return promise;
+}
+
 
 
 /*

@@ -136,8 +136,10 @@ export function loadProductsFetch() {
   // we are saved this entire fetch promise so we can return it and then we can add a next step wherever this function is called. 
   const promise = fetch(
     'https://supersimplebackend.dev/products'
+  
   ).then((response) => {
     return response.json();
+  
   }).then((productsData) => {
     products = productsData.map((productDetails) => {
       if(productDetails.type === 'clothing') {
@@ -147,6 +149,12 @@ export function loadProductsFetch() {
     });
 
     console.log('load products');
+
+    // we use ".catch()" to handle errors in promises, when an error comes the compiler will come all the way down to ".catch()" instead of above ".then()" methods.
+    // the "error" parameter of .catch() conatains the info about the error.
+  }).catch((error) => {
+    console.log('Unexpected error. Please try again later');
+    console.log(error);
   });
 
   return promise;
@@ -173,11 +181,16 @@ export function loadProducts(fun) {
     console.log('load products');
     fun();
   });
+  // this is how setup code for error handling, its a method of callback. and the parameter "error" contains the info about the error.
+  // so we setups a seperate callback just for error handling.
+  xhr.addEventListener('error', (error) => {
+    console.log('Unexpected error. Please try again later');
+    console.log(error);
+  });
   
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
-
 
 /*
 export const products = [

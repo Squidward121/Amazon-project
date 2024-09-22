@@ -317,7 +317,15 @@ Async Await:
 */
 
 async function loadPage() {
-  await loadProductsFetch();
+  // to handle errors in async await we'll put all promise codes into "try{}" and if any error occurs it'll be catched on the "catch()" and we can write code to handle it.
+  // the "error" parameter in "catch()" contains info about the error.
+  try{
+    await loadProductsFetch();
+  
+  } catch (error) {
+    console.log('Unexpected error. Please try again later');
+    console.log(error);
+  }
 
   renderOrderSummary();
   renderPaymentSummary(); 
@@ -326,3 +334,33 @@ async function loadPage() {
 loadPage();
 
 headerCartQuantity();
+
+/*
+more details about try/catch:
+
+1) we can manually create errors, to do that we use "throw" + a value inside "try". eg:
+  try{
+    throw 'error';
+    await loadProductsFetch();
+  
+  } catch (error) {
+    console.log('Unexpected error. Please try again later');
+    console.log(error);
+  }
+
+now it'll skip the rest of the code inside the "try" and goes straight to "catch"
+
+
+
+2) to throw an error in the future inside promise we use a 2nd param called reject() :
+  
+  return new promise((resolve, reject) => {
+      loadCart(() => {
+        reject('error3');
+        // resolve();  
+      });
+  })
+
+
+3) we can also use try/catch with normal code or sychronous code to catch errors. its available on outside async await.
+*/

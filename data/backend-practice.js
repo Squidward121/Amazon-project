@@ -13,9 +13,9 @@ xhr.open('GET', 'https://supersimplebackend.dev');    // this part setups the re
 /*
 1st parameter is the type of HTTP message or the method of the requesting. there are several methods of requesting:
   1)GET - get some information from the backend.
-  2)POST
-  3)PUT
-  4)DELETE
+  2)POST - create something (to send to backend and to recieve from the backend)
+  3)PUT - Update something
+  4)DELETE - delete something
 
 2nd parameter is about where to send this HTTP message/request. so using HTTP we can send messages to any computer that's connected to the internet. to locate another computer we use a URL, we give the URL as string to the 2nd parameter.
 */

@@ -184,13 +184,145 @@ promise has two more features:
   also the values we give to resolve() as an argument is saved in the parameter "values" of then as an array.
 */
 
-Promise.all([
-  loadProductsFetch()
+// Promise.all([
+//   loadProductsFetch()
 
-  ]).then(() => {
-    renderOrderSummary();
-    renderPaymentSummary(); 
-});
+//   ]).then(() => {
+//     renderOrderSummary();
+//     renderPaymentSummary(); 
+// });
 
+
+
+/*
+Async Await:
+  its even better way to handle asynchronous code.
+  currently we are using promise to handle asynchronous code, but the problem with that it creates lot of extra code for eg: we've to create 
+  a new promise then inner function then resolving it and we need to use ".then()". 
+  Async Await is a shortcut for promises. it doesn't need any extra code.
+  "async" makes a function to return a promise, so basically all the code we write inside the function will automatically wraps in a promise.
+  
+  async function loadPage() {
+    console.log('load page');
+  }
+
+  this above code is a shortcut for below code:
+  
+  function loadPage() {
+  return new Promise((resolve) => {
+    console.log('load page');
+    resolve();
+  });
+
+
+  when we return a value it'll be saved on the parameter of next .then(), and we can access down below. 
+
+  async function loadPage() {
+  console.log('load page');
+  return 'value2';
+  }
+
+  loadPage().then((value) => {
+    console.log('next step');
+    console.log(value);
+  });
+  }
+
+
+
+
+  now you might be wondering what's the point of this feature ? i mean it reduces the code, but what else ?
+  the reason we use "async" it lets us use the second feature called "await".
+  await lets us wait for a promise to finish, before going to the next line. lets do an eg with an asynchronous code, lets pick "loadProductsFetch()":
+
+  async function loadPage() {
+    console.log('load page');
+
+  loadProductsFetch().then(() => {
+    
+  });
+
+  }
+
+  loadPage().then(() => {
+    console.log('next step');
+  });
+
+
+  so "loadProductsFetch()" loads products from the backend, and usually this returns a promise, so one way to wait for this to finish use .then(), so it'll run the 
+  inner function after the "loadProductsFetch()" is finished.
+  
+  now "await" gives us another way to wait for this promise to finish.
+  instead of using .then(), at the front of the "loadProductsFetch()" write "await".
+
+  async function loadPage() {
+    console.log('load page');
+
+    await loadProductsFetch();
+  }
+
+  loadPage().then(() => {
+    console.log('next step');
+  });
+
+
+  "await" basically lets us write asynchronous code like normal code or sychronous code. now it'll wait for "loadProductsFetch()" to finish and it'll get the respond 
+  back from the backend before going to the next line. so we dont have to write any .then(), we just've to write like a normal code line by line.
+
+
+
+  async function loadPage() {
+    console.log('load page');
+
+    await loadProductsFetch();
+
+    return 'value2';
+  }
+
+  this above code is a shortcut to the below code respectively:
+
+  function loadPage() {
+
+    return new Promise((resolve) => {
+      console.log('load page');
+      resolve();
+
+    }).then(() => {
+    return loadProductsFetch();
+
+    }).then(() => {
+      return  new Promise ((resolve) => {
+        resolve('value2');  
+      });
+    });
+  }
+
+
+
+  and this makes our code a lot easier to read. its a shortcut for promises.
+  await can be only used inside async function.
+  also the closest function has to be async, means:
+
+  async function outerFunction() {
+    console.log('hello');
+
+    function innerFunction() {
+      await loadProductsFetch();
+    }
+  }
+
+  you cant use await on innerFunction which hasn't declared as async function.
+
+  so when we work with asynchronous code a best practice is to use async await over promises and callbacks.
+*/
+
+async function loadPage() {
+  await loadProductsFetch();
+
+  renderOrderSummary();
+  renderPaymentSummary(); 
+}
+
+loadPage();
 
 headerCartQuantity();

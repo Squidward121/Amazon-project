@@ -88,5 +88,41 @@
         </div>
       </div>
     </div>
+
+    <script>
+      /*
+      URL parameters:
+        it lets us save data directly in the URL. we can save multiple datas. just give an amperson and the data.
+        to create a URL parameter after the URL write like:
+        ?orderId=123
+        ? = means we're adding URL parameter
+        orderId = its the property
+        123 = its the value
+
+        this sorta like an object like:
+        {
+          orderId: '123'
+        }
+
+        now we can use js to get the data out of the URL, for that we can use an built-in class called "URL()", lets generate an object:
+        
+        const url = new URL(window.location.href);
+
+        "window.location.href" this will get the URL from browser window. so this URL class analyses the URL address we gave and breaks it down into different parts.
+        one of the part is URL parameters. to get the parameters we use a property ".searchParams". btw URL parameters is aka search parameters, coz they're used for features like youtube search.
+
+        const url = new URL(window.location.href);
+        url.searchParams.get('orderId');
+
+        ".get()" will give us data as individual parameter. we should give the property name and it'll give us the data.
+
+
+
+        in youtube if we search something our search will get saved into the URL as parameters, if we search for something else our search will also saved as URL parameters, and we can go back and forth b/w the two.
+      */
+
+      const url = new URL(window.location.href);
+      url.searchParams.get('orderId');
+    </script>
   </body>
 </html>

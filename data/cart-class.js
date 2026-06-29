@@ -4,7 +4,7 @@
 */
 // class is a better way to generate objects in object-oriented programming.
 class Cart {
-  cartItems;      // and this is a public property, this accessible across this class.
+  cartItems;      // and this is a public property, this is accessible across this class.
   #localStorageKey;   // this make it private which make it's accessing possible only inside the class. Whenever you access it inside the class you have to use "#" in front.
 
   constructor(localStorageKey) {             // it works as normal method except it runs automatically after creating the object. use "constructor" keyword.
@@ -105,7 +105,7 @@ console.log(businessCart instanceof Cart);  // so this will check if the "busine
 /*
   so an whole basic idea is:
     OOP means organizing our code into objects coz it tries to represent the real world.
-    Class is a feature which helps us to generate these objects0 multiple times, basically it's an object generator.
+    Class is a feature which helps us to generate these objects multiple times, basically it's an object generator.
 */
 
 /*
@@ -121,11 +121,12 @@ console.log(businessCart instanceof Cart);  // so this will check if the "busine
     it makes a property or a method only accessible in the class, so its secures from anyone trying to access it outside the class. so private gives us security.
     The syntax is "#", you've to use when you declare it and also when you access it inside the class.
     Any property and method that's not private is called public, anyone can access it from outside and inside the class.
+    Making it private is called Encapsulation.
 
     *Inheritance
 
     *polymorphism:
     we can use a method without knowing exactly what class it is. Polymorphism is sort of like an alternative of doing an if-else statement.
-    eg: The method "extraInfoHTML()" of "Product" and "Clothing" classes in "cart-class.js", the method is used in "amazon.js" line no: 53.
+    eg: The method "extraInfoHTML()" of "Product" and "Clothing" classes in "products.js", the method is used in "amazon.js" line no: 53.
     
 */

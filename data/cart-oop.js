@@ -103,7 +103,7 @@ console.log(cart);
 console.log(businessCart);
 
 /* 
-  This is the basic idea behind the OOP, organizing our into an object.
+  This is the basic idea behind the OOP, organizing our code into an object.
 
   Why do we use OOP?
   -it tries to represent the real world.
